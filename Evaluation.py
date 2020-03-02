@@ -17,9 +17,9 @@ class Evaluation(object) :
             if reference[i] == predit[i] :
                 self.__vrais_positifs += 1
             else :
-                if reference[i] == self.values[0] and predit[i] == self.values[1]:
+                if reference[i] == self.values[1] and predit[i] == self.values[0]:
                     self.__faux_negatifs += 1
-                elif  reference[i] == self.values[1] and predit[i] == self.values[0]:
+                elif  reference[i] == self.values[0] and predit[i] == self.values[1]:
                     self.__faux_positifs += 1
 
     def precision(self):
