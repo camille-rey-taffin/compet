@@ -74,7 +74,7 @@ class Predict(object) :
 		self.workspace()
 		#print(self.seuil)
 
-		if self.seuil < 0.6 :
+		if self.seuil < 0.5 :
 			self.predicted = 'neg'
 		else :
 			self.predicted = 'pos'
