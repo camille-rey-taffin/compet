@@ -1,10 +1,14 @@
 from glob import glob
 import os
+# from scripts.Evaluation import Evaluation
+# from scripts.Predict import Predict
 from Evaluation import Evaluation
-from Predict import Predict
+import spacy
 predicted = []
 expected = []
 
+nlp=spacy.load('en_core_web_sm')
+from Predict_V4 import Predict
 
 def getFile(fic,pol):
     x = 0
@@ -30,9 +34,8 @@ def getcontentlabel(file) :
 def prediction(file,expect) :
 
 
-    pred = Predict(file)
+    pred = Predict(file,nlp)
     pred.predict()
-    #print("prediction :" + pred.predicted)
     predicted.append(pred.predicted)
     expected.append(expect)
 
@@ -40,17 +43,17 @@ def prediction(file,expect) :
 if __name__ == '__main__':
 
 
-    for fic in glob('./imdb_test/*/*.txt') :
-        #print(fic)
+    for fic in glob('./txt_sentoken/*/*.txt') :
+        # print(fic)
         file, label = getcontentlabel(fic)
-        #print(file)
-        #print("attendu :"+label)
+        # print(file)
+        # print(label)
 
         prediction(file,label)
 
 
-    #print(predicted)
-    #print(expected)
+    #print(len(predicted))
+    #print(len(expected))
 
     eval = Evaluation(expected,predicted)
 
